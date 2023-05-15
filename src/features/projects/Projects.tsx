@@ -4,13 +4,15 @@ import { useIsMobile } from '~/app/hooks'
 import styles from './Projects.module.scss'
 
 import projects from './__mocks__/projects-list.json'
-import ProjectCard from './ProjectCard'
+import ProjectCard, { NewProjectCard } from './ProjectCard'
 
 export default function Projects() {
   const isMobile = useIsMobile()
+  const isAddingNewProject = true
 
   // TODO: show "no projects" placeholder
   // TODO: show new project row
+  // TODO: figure out reordering (drag'n'drop) and pagination (infinite scroll?)
 
   return (
     <List
@@ -22,6 +24,13 @@ export default function Projects() {
           <ProjectCard project={project} isCompact={isMobile} />
         </List.Item>
       )}
+      header={
+        isAddingNewProject && (
+          <List.Item className={styles.row}>
+            <NewProjectCard isCompact={isMobile} />
+          </List.Item>
+        )
+      }
     />
   )
 }

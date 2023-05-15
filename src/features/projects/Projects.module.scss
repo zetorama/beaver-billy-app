@@ -1,6 +1,12 @@
 .root {
   border-left: none;
   border-right: none;
+
+  // override Ant's defaults
+  & :global(.ant-list-header),
+  & :global(.ant-list-footer) {
+    padding: 0;
+  }
 }
 
 // Note: double-class to override ant's styles

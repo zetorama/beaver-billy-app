@@ -4,6 +4,13 @@
 
 .formItem {
   width: 100%;
+
+  // override Ant's defaults
+  & :global(.ant-form-item-control-input-content) {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+  }
 }
 
 .submitButton {

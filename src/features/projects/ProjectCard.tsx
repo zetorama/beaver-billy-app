@@ -4,9 +4,9 @@ import { glue } from '~/app/utils'
 import { ReactComponent as IconEdit } from './icon-edit.svg'
 import { ReactComponent as IconDelete } from './icon-delete.svg'
 import { ReactComponent as IconConfirm } from './icon-confirm.svg'
+import ProjectNameEditor, { FormValues } from './ProjectNameEditor'
 import defaultProjectPicture from './project-default-picture.png'
 import styles from './ProjectCard.module.scss'
-import ProjectNameEditor from './ProjectNameEditor'
 
 export type Project = {
   id: number
@@ -41,6 +41,28 @@ const askDeleteConfirmation = () =>
     }
   })
 
+export function NewProjectCard({ isCompact, className }: { isCompact?: boolean; className?: string }) {
+  const handleFinish = (values: FormValues) => {
+    console.log('TODO: handle creating project', values)
+  }
+
+  const handleCancel = () => {
+    console.log('TODO: handle cancel creating')
+  }
+
+  return (
+    <div className={glue(styles.root, isCompact && styles.isCompact, styles.isNew, className)}>
+      <div className={styles.picture}>
+        <ProjectPicture className={styles.pictureImg} />
+      </div>
+
+      <div className={styles.identity}>
+        <ProjectNameEditor onFinish={handleFinish} onCancel={handleCancel} />
+      </div>
+    </div>
+  )
+}
+
 export default function ProjectCard({
   project,
   isCompact,
@@ -52,6 +74,11 @@ export default function ProjectCard({
 }) {
   const [isEditing, setIsEditing] = useState(false)
   const toggleIsEditing = () => setIsEditing((flag) => !flag)
+
+  const handleEditFinish = (values: FormValues) => {
+    console.log('TODO: handle editing project', values)
+    toggleIsEditing()
+  }
 
   const handleDeleteClick = async () => {
     const confirmed = await askDeleteConfirmation()
@@ -70,7 +97,7 @@ export default function ProjectCard({
         <>
           <div className={styles.description}>
             {isEditing ? (
-              <ProjectNameEditor project={project} onFinish={toggleIsEditing} />
+              <ProjectNameEditor project={project} onFinish={handleEditFinish} />
             ) : (
               <>
                 <h2 className={styles.descriptionTitle}>{project.title}</h2>
@@ -90,7 +117,7 @@ export default function ProjectCard({
         <>
           <div className={styles.identity}>
             {isEditing ? (
-              <ProjectNameEditor project={project} onFinish={toggleIsEditing} />
+              <ProjectNameEditor project={project} onFinish={handleEditFinish} />
             ) : (
               <>
                 <h2 className={styles.identityTitle}>{project.title}</h2>
@@ -112,8 +139,8 @@ export default function ProjectCard({
   )
 }
 
-function ProjectPicture({ project, className }: { project: Project; className?: string }) {
-  const src = project.picture || defaultProjectPicture
+function ProjectPicture({ project, className }: { project?: Project; className?: string }) {
+  const src = project?.picture || defaultProjectPicture
   return <img src={src} alt='' className={className} />
 }
 
