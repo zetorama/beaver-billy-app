@@ -1,19 +1,15 @@
+import type { Project } from './Projects.types'
 import { ComponentProps, useState } from 'react'
 import { Button, Tooltip, Modal } from 'antd'
 import { glue } from '~/app/utils'
+import { useAppDispatch } from '~/app/hooks'
+import { createProject, deleteProject, toggleNewProjectRequest, updateProject } from './Projects.state'
 import { ReactComponent as IconEdit } from './icon-edit.svg'
 import { ReactComponent as IconDelete } from './icon-delete.svg'
 import { ReactComponent as IconConfirm } from './icon-confirm.svg'
 import ProjectNameEditor, { FormValues } from './ProjectNameEditor'
 import defaultProjectPicture from './project-default-picture.png'
 import styles from './ProjectCard.module.scss'
-
-export type Project = {
-  id: number
-  title: string
-  picture: string | null
-  createdAt: string
-}
 
 const askDeleteConfirmation = () =>
   new Promise((resolve, reject) => {
@@ -42,12 +38,14 @@ const askDeleteConfirmation = () =>
   })
 
 export function NewProjectCard({ isCompact, className }: { isCompact?: boolean; className?: string }) {
-  const handleFinish = (values: FormValues) => {
-    console.log('TODO: handle creating project', values)
+  const dispatch = useAppDispatch()
+  const handleFinish = ({ title }: Omit<FormValues, 'id'>) => {
+    dispatch(createProject({ title }))
+    dispatch(toggleNewProjectRequest(false))
   }
 
   const handleCancel = () => {
-    console.log('TODO: handle cancel creating')
+    dispatch(toggleNewProjectRequest(false))
   }
 
   return (
@@ -72,25 +70,28 @@ export default function ProjectCard({
   isCompact?: boolean
   className?: string
 }) {
+  const dispatch = useAppDispatch()
   const [isEditing, setIsEditing] = useState(false)
   const toggleIsEditing = () => setIsEditing((flag) => !flag)
 
-  const handleEditFinish = (values: FormValues) => {
-    console.log('TODO: handle editing project', values)
+  const handleEditFinish = ({ id, title }: FormValues) => {
+    if (id && title) {
+      dispatch(updateProject({ id, title }))
+    }
     toggleIsEditing()
   }
 
   const handleDeleteClick = async () => {
     const confirmed = await askDeleteConfirmation()
     if (confirmed) {
-      console.log('TODO: handle deleting project', project)
+      dispatch(deleteProject(project.id))
     }
   }
 
   return (
     <div className={glue(styles.root, isCompact && styles.isCompact, isEditing && styles.isEditing, className)}>
       <div className={styles.picture}>
-        <ProjectPicture className={styles.pictureImg} project={project} />
+        <ProjectPicture className={styles.pictureImg} />
       </div>
 
       {isCompact ? (
@@ -139,9 +140,8 @@ export default function ProjectCard({
   )
 }
 
-function ProjectPicture({ project, className }: { project?: Project; className?: string }) {
-  const src = project?.picture || defaultProjectPicture
-  return <img src={src} alt='' className={className} />
+function ProjectPicture({ className }: { className?: string }) {
+  return <img src={defaultProjectPicture} alt='' className={className} />
 }
 
 function RenameButton({

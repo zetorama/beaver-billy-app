@@ -1,10 +1,10 @@
+import type { Project } from './Projects.types'
 import { Button, Form, Input } from 'antd'
-import { Project } from './ProjectCard'
 import { glue } from '~/app/utils'
 import styles from './ProjectNameEditor.module.scss'
 
 export type FormValues = {
-  id?: number
+  id: string | undefined
   title: string
 }
 
@@ -30,7 +30,7 @@ export default function ProjectNameEditor({
       initialValues={{ id: project?.id, title: project?.title ?? '' }}
       className={glue(styles.root, className)}
     >
-      <Form.Item name='id' hidden />
+      {project?.id && <Form.Item name='id' hidden />}
       <Form.Item
         className={styles.formItem}
         name='title'
@@ -38,7 +38,7 @@ export default function ProjectNameEditor({
       >
         <Input
           autoFocus
-          placeholder='Name your project'
+          placeholder={project?.id ? 'Name your project' : 'New project name'}
           addonAfter={
             <Button
               type='link'
@@ -53,12 +53,12 @@ export default function ProjectNameEditor({
             </Button>
           }
         />
-        {onCancel && (
-          <Button type='ghost' size='small' htmlType='button' className={styles.submitButton} onClick={onCancel}>
-            Cancel
-          </Button>
-        )}
       </Form.Item>
+      {onCancel && (
+        <Button type='ghost' size='small' htmlType='button' className={styles.submitButton} onClick={onCancel}>
+          Cancel
+        </Button>
+      )}
     </Form>
   )
 }

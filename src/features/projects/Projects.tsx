@@ -1,17 +1,18 @@
 import { List } from 'antd'
-import { useIsMobile } from '~/app/hooks'
-
-import styles from './Projects.module.scss'
-
-import projects from './__mocks__/projects-list.json'
+import { useAppDispatch, useAppSelector, useIsMobile } from '~/app/hooks'
 import ProjectCard, { NewProjectCard } from './ProjectCard'
+import { selectAllProjects, selectIsNewProjectRequested, toggleNewProjectRequest } from './Projects.state'
+import styles from './Projects.module.scss'
 
 export default function Projects() {
   const isMobile = useIsMobile()
-  const isAddingNewProject = true
+  const projects = useAppSelector(selectAllProjects)
+  const isAddingNewProject = useAppSelector(selectIsNewProjectRequested)
 
-  // TODO: show "no projects" placeholder
-  // TODO: show new project row
+  if (!projects.length && !isAddingNewProject) {
+    return <ProjectsPlaceholder />
+  }
+
   // TODO: figure out reordering (drag'n'drop) and pagination (infinite scroll?)
 
   return (
@@ -31,6 +32,23 @@ export default function Projects() {
           </List.Item>
         )
       }
+      locale={{ emptyText: 'No projects yet' }}
     />
+  )
+}
+
+function ProjectsPlaceholder() {
+  const dispatch = useAppDispatch()
+  const handleClick = () => {
+    dispatch(toggleNewProjectRequest())
+  }
+
+  return (
+    <div className={styles.placeholder}>
+      <h1>No projects yet</h1>
+      <p>
+        Click <button onClick={handleClick}>➕</button> button to create your first project.
+      </p>
+    </div>
   )
 }

@@ -12,20 +12,20 @@ const root = ReactDOM.createRoot(document.getElementById('root')!)
 
 root.render(
   <React.StrictMode>
-    <StateProvider store={store}>
-      <ThemeProvider
-        theme={{
-          token: {
-            fontFamily: 'inherit',
-            fontSize: 16,
-            borderRadius: 0,
-            borderRadiusSM: 0,
-            borderRadiusLG: 0,
-          },
-        }}
-      >
+    <ThemeProvider
+      theme={{
+        token: {
+          fontFamily: 'inherit',
+          fontSize: 16,
+          borderRadius: 0,
+          borderRadiusSM: 0,
+          borderRadiusLG: 0,
+        },
+      }}
+    >
+      <StateProvider store={store}>
         <App />
-      </ThemeProvider>
-    </StateProvider>
+      </StateProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 )

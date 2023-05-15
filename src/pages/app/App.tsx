@@ -1,5 +1,6 @@
 import { Button, Layout } from 'antd'
-import { useIsMobile } from '~/app/hooks'
+import { useAppDispatch, useIsMobile } from '~/app/hooks'
+import { toggleNewProjectRequest } from '~/features/projects/Projects.state'
 import Projects from '~/features/projects/Projects'
 import { ReactComponent as IconPlus } from './icon-plus.svg'
 import styles from './App.module.scss'
@@ -34,8 +35,9 @@ export default function App() {
 }
 
 function NewProjectButton({ className }: { className?: string }) {
+  const dispatch = useAppDispatch()
   const handleClick = () => {
-    console.log('TODO: Create new project')
+    dispatch(toggleNewProjectRequest())
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
