@@ -1,0 +1,17 @@
+.root {
+  width: 100%;
+}
+
+.formItem {
+  width: 100%;
+}
+
+.submitButton {
+  &:enabled {
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

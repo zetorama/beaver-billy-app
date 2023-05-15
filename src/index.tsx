@@ -17,6 +17,9 @@ root.render(
         theme={{
           token: {
             fontFamily: 'inherit',
+            fontSize: 16,
+            borderRadius: 0,
+            borderRadiusSM: 0,
             borderRadiusLG: 0,
           },
         }}

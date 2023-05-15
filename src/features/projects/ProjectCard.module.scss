@@ -1,13 +1,14 @@
 .root {
   width: 100%;
-  padding: 12px 16px;
+  padding: 18px 16px;
   gap: 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   @media (min-width: 576px) {
-    padding: 18px 24px;
+    padding-left: 24px;
+    padding-right: 24px;
     gap: 24px;
   }
 
@@ -16,39 +17,34 @@
   }
 }
 .picture {
-  order: 1;
   flex: 0 1;
-
-  .isCompact & {
-    align-self: flex-start;
-  }
 }
 .pictureImg {
   width: 2rem;
   height: 2rem;
 }
-.title {
-  order: 2;
+.identity {
   flex: 0 1;
+  min-width: 40%;
+  display: flex;
+  align-items: center;
+}
+.identityTitle,
+.descriptionTitle {
+  max-width: 100%;
+  flex: 1;
+  margin: 0;
   white-space: nowrap;
-  min-width: 20%;
-  max-width: 50%;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-.title,
-.descriptionTitle {
-  margin: 0;
   line-height: 1.3em;
   font-size: 1.25rem;
   font-weight: 600;
 }
-.edit {
-  order: 3;
-  flex: 0 1;
+.identityEdit {
+  padding: 0 12px;
 }
 .timestamp {
-  order: 4;
   flex: 1;
   text-align: center;
 }
@@ -57,16 +53,21 @@
   font-size: 0.875rem;
   color: #7f7f7f;
 }
-.delete {
-  order: 5;
+.deleteAction {
   flex: 0 1;
 }
 .description {
-  order: 1;
   flex: 1;
+  min-width: 50%;
+  min-height: 3em;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
 }
 .actions {
-  order: 1;
+  flex: 0 1;
+  display: flex;
 }
 
 .icon {
@@ -77,4 +78,22 @@
   button:hover > & path {
     fill: #656565;
   }
+}
+
+.confirmIcon {
+  width: 22px;
+  height: 22px;
+  margin-right: 1rem;
+  align-self: flex-start;
+}
+.confirmation {
+  font-weight: 400;
+  font-size: 14px;
+}
+.confirmationTitle {
+  font-weight: 400;
+}
+.confirmationText {
+  margin-top: 1em;
+  color: #818181;
 }
