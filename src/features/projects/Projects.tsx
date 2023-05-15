@@ -47,7 +47,11 @@ function ProjectsPlaceholder() {
     <div className={styles.placeholder}>
       <h1>No projects yet</h1>
       <p>
-        Click <button onClick={handleClick}>➕</button> button to create your first project.
+        Click{' '}
+        <button onClick={handleClick} aria-label='Create new project'>
+          ➕
+        </button>{' '}
+        to create your first project.
       </p>
     </div>
   )

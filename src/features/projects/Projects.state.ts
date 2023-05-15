@@ -15,7 +15,7 @@ const initialState: ProjectsState = {
   isNewProjectRequested: false,
 }
 
-export const projectsSlice = createSlice({
+export const slice = createSlice({
   name: 'counter',
   initialState,
   reducers: {
@@ -48,7 +48,7 @@ export const projectsSlice = createSlice({
   },
 })
 
-export const { toggleNewProjectRequest, createProject, updateProject, deleteProject } = projectsSlice.actions
+export const { toggleNewProjectRequest, createProject, updateProject, deleteProject } = slice.actions
 
 export const selectProjectById = (state: RootState, id: Project['id']) => {
   return state.projects.items.find((p) => p.id === id)
@@ -62,4 +62,4 @@ export const selectAllProjects = (state: RootState) => {
   return state.projects.items
 }
 
-export default projectsSlice.reducer
+export default slice.reducer

@@ -84,6 +84,13 @@
   }
 }
 
+.modal {
+  // Override Ant's defaults
+  & :global(.ant-modal-confirm-body) {
+    flex-wrap: nowrap;
+  }
+}
+
 .confirmIcon {
   width: 22px;
   height: 22px;

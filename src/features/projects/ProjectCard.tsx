@@ -15,6 +15,7 @@ const askDeleteConfirmation = () =>
   new Promise((resolve, reject) => {
     try {
       Modal.confirm({
+        className: styles.modal,
         icon: <IconConfirm className={styles.confirmIcon} />,
         content: (
           <div className={styles.confirmation}>

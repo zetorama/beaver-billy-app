@@ -39,6 +39,7 @@ export default function ProjectNameEditor({
         <Input
           autoFocus
           placeholder={project?.id ? 'Name your project' : 'New project name'}
+          aria-label='Project name'
           addonAfter={
             <Button
               type='link'
@@ -48,6 +49,7 @@ export default function ProjectNameEditor({
               disabled={
                 !form.isFieldsTouched(true) || !!form.getFieldsError().filter(({ errors }) => errors.length).length
               }
+              aria-label='Submit'
             >
               ✔️
             </Button>

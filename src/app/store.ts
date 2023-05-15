@@ -13,10 +13,12 @@ const getStoredState = () => {
   }
 }
 
+export const reducer = {
+  projects: projectsReducer,
+}
+
 export const store = configureStore({
-  reducer: {
-    projects: projectsReducer,
-  },
+  reducer,
   preloadedState: getStoredState(),
 })
 

@@ -11,7 +11,7 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
  */
 export const useMediaQuery = (query: string) => {
   // Get the initial value of the media query
-  const [match, setMatch] = useState(() => (typeof window !== 'undefined' ? window.matchMedia(query).matches : false))
+  const [match, setMatch] = useState(() => window.matchMedia(query).matches)
 
   // Add a listener for changes and update the state accordingly
   useEffect(() => {
@@ -21,7 +21,6 @@ export const useMediaQuery = (query: string) => {
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [query])
 
-  // Return the match value
   return match
 }
 
