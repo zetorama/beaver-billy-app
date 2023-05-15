@@ -8,12 +8,33 @@
   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.203436);
 }
 
-.container {
-  padding: 12px 16px;
+.headerOuter {
   margin: auto;
 
   @media (min-width: 576px) {
     max-width: 85%;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: (1600px * 0.85);
+  }
+}
+
+.headerInner {
+  padding: 12px 16px;
+}
+
+.main {
+  margin: 60px auto 30px;
+  background-color: #fdfdfd;
+  color: #4c4c4c;
+
+  @media (min-width: 576px) {
+    max-width: 85%;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: (1600px * 0.85);
   }
 }
 

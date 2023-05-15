@@ -1,23 +1,31 @@
-import { Counter } from '~/features/counter/Counter'
 import { Layout } from 'antd'
+import Projects from '~/features/projects/Projects'
 import styles from './App.module.scss'
 
 export default function App() {
   return (
     <Layout className={styles.root}>
-      <header className={styles.header}>
-        <div className={styles.container}>
+      <Header headline='My projects' />
+      <Layout.Content>
+        <main className={styles.main}>
+          <Projects />
+        </main>
+      </Layout.Content>
+    </Layout>
+  )
+}
+
+function Header({ headline }: { headline?: string }) {
+  return (
+    <header className={styles.header}>
+      <div className={styles.headerOuter}>
+        <div className={styles.headerInner}>
           <div className={styles.logo}>
             <span className='sr-only'>Beaver Billy's App</span>
           </div>
-          <h1 className={styles.headline}>My projects</h1>
+          {headline && <h1 className={styles.headline}>{headline}</h1>}
         </div>
-      </header>
-      <Layout.Content>
-        <div className={styles.container}>
-          <Counter />
-        </div>
-      </Layout.Content>
-    </Layout>
+      </div>
+    </header>
   )
 }

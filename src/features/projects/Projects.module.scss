@@ -1,0 +1,9 @@
+.root {
+  border-left: none;
+  border-right: none;
+}
+
+// Note: double-class to override ant's styles
+.row.row {
+  padding: 0;
+}
