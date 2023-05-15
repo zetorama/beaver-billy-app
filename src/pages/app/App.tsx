@@ -7,7 +7,10 @@ export default function App() {
     <Layout className={styles.root}>
       <header className={styles.header}>
         <div className={styles.container}>
-          <div>Logo</div>
+          <div className={styles.logo}>
+            <span className='sr-only'>Beaver Billy's App</span>
+          </div>
+          <h1 className={styles.headline}>My projects</h1>
         </div>
       </header>
       <Layout.Content>

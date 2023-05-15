@@ -3,14 +3,37 @@
 }
 
 .header {
+  color: #424242;
   background-color: #f7f9fd;
+  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.203436);
 }
 
 .container {
-  padding: 1rem;
+  padding: 12px 16px;
   margin: auto;
 
   @media (min-width: 576px) {
     max-width: 85%;
+  }
+}
+
+.logo {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+
+  background-image: url(./logo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.headline {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+
+  .logo + & {
+    margin-top: 48px;
   }
 }
