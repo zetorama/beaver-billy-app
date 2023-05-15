@@ -1,27 +1,31 @@
-# vite-template-redux
+# Beaver Billy's App
 
-Uses [Vite](https://vitejs.dev/), [Vitest](https://vitest.dev/), and [React Testing Library](https://github.com/testing-library/react-testing-library) to create a modern [React](https://react.dev/) app compatible with [Create React App](https://create-react-app.dev/)
+TODO
 
-```sh
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
-```
+## Challenges
 
-## Goals
+## Stack
 
-- Easy migration from Create React App or Vite
-- As beginner friendly as Create React App
-- Optimized performance compared to Create React App
-- Customizable without ejecting
+Based on [`vite-template-redux`](https://github.com/reduxjs/redux-templates/tree/master/packages/vite-template-redux).
+
+- Typescript
+- React
+- Redux / RTK
+- Ant Design & SASS
+- vitest
+- vite
+
+## Quick start
+
+1. `git clone … && cd …` - clone repo & switch to project directory
+2. `npm install` - install deps
+3. `npm start` - start development
 
 ## Scripts
 
-- `dev`/`start` - start dev server and open browser
-- `build` - build for production
-- `preview` - locally preview production build
-- `test` - launch test runner
-
-## Inspiration
-
-- [Create React App](https://github.com/facebook/create-react-app/tree/main/packages/cra-template)
-- [Vite](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
-- [Vitest](https://github.com/vitest-dev/vitest/tree/main/examples/react-testing-lib)
+- `npm run dev`/`npm start` - start dev server and open browser
+- `npm run build` - build for production
+- `npm run preview` - locally preview production build
+- `npm run test` - launch test runner
+- `npm run lint` - run linter
+- `npm run type-check` - run typescript check

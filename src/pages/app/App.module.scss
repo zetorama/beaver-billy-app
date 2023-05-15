@@ -1,0 +1,16 @@
+.root {
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #f7f9fd;
+}
+
+.container {
+  padding: 1rem;
+  margin: auto;
+
+  @media (min-width: 576px) {
+    max-width: 85%;
+  }
+}
