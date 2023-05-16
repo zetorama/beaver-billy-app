@@ -23,13 +23,15 @@ const store = configureStore({
 
 describe('Projects', () => {
   it('renders all my projects', () => {
-    const { container } = render(
+    render(
       <Provider store={store}>
         <Projects />
       </Provider>,
     )
 
-    expect(container).toMatchSnapshot()
+    for (const { title } of mockedProjects) {
+      expect(screen.getByText(title)).toBeInTheDocument()
+    }
   })
 
   it('updates project name', async () => {

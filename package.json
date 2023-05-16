@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "start": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "prebuild": "tsc && vitest run",
     "preview": "vite preview",
     "test": "vitest",
     "format": "prettier --write .",
